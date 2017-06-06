@@ -66,6 +66,27 @@ typedef void(^BCVideoFilterStatus)(float progress, BOOL isFinish, NSError *error
                        filter:(BCFilter *)filter
             watermarkInputUrl:(NSURL *)watermarkInputUrl;
 
+
+/**
+ *  开始获取视频帧数
+ */
+- (void)start;
+
+/**
+ *  停止获取视频帧数
+ */
+- (void)stop;
+
+/**
+ *  暂停获取视频帧数
+ */
+- (void)pause;
+
+/**
+ *  恢复获取视频帧数
+ */
+- (void)resume;
+
 /**
  *  添加滤镜
  *

@@ -43,14 +43,7 @@
 
 - (void) drawRect:(CGRect)rect {
     
-    // 构造解码比例
-    CGRect origninalRect = CGRectMake(0, 260, 760, 520);
-    
-    // 获取比例屏幕相对比例
-//    CGFloat widthScale  = (rect.size.width / origninalRect.size.width) * 2;
-//    CGFloat heightScale = (rect.size.height / origninalRect.size.height) * 2;
-    
-//    CGRect destRect = CGRectApplyAffineTransform(origninalRect, CGAffineTransformMakeScale(widthScale, heightScale));
+    CGRect origninalRect = CGRectMake(0, 0, self.drawableWidth, self.drawableHeight);
     [coreImageContext drawImage:self.image inRect:origninalRect fromRect:self.image.extent];
     
 }

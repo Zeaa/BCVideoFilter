@@ -8,20 +8,33 @@
 
 #import <Foundation/Foundation.h>
 
+@class AVAsset;
 @interface BCVideoBuffer : NSObject
 
 typedef void(^BCVideoBufferStatus)(CVPixelBufferRef buffer, BOOL isFinish, NSError *error);
 
 /**
- *  初始化并开始视频
+ *  初始化视频
  *
- *  @param URL           视频URL
- *  @param callbackBlock 回调
+ *  @param url          视频URL
+ *  @param status       回调
  *
  *  @return self
  */
 - (instancetype)initWithUrl:(NSURL *)url
           completionHandler:(BCVideoBufferStatus)status;
+
+
+/**
+ *  初始化视频
+ *
+ *  @param asset        视频Asset
+ *  @param status       回调
+ *
+ *  @return self
+ */
+- (instancetype)initWithAsset:(AVAsset *)asset
+            completionHandler:(BCVideoBufferStatus)status;
 
 /**
  *  开始获取视频帧数

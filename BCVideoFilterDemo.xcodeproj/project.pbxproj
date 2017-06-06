@@ -488,10 +488,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JQSZ9BW6H2;
 				GCC_PREFIX_HEADER = BCVideoFilterDemo/Prefix.pch;
 				INFOPLIST_FILE = BCVideoFilterDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.chenmingbiao.BCVideoFilterDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = top.mrfan.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -500,10 +502,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JQSZ9BW6H2;
 				GCC_PREFIX_HEADER = BCVideoFilterDemo/Prefix.pch;
 				INFOPLIST_FILE = BCVideoFilterDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.chenmingbiao.BCVideoFilterDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = top.mrfan.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

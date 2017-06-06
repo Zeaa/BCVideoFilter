@@ -41,7 +41,7 @@
 }
 
 /**
- *  初始化并开始视频
+ *  初始化视频
  *
  *  @param URL           视频URL
  *  @param callbackBlock 回调
@@ -70,13 +70,35 @@
     return self;
 }
 
+- (instancetype)initWithAsset:(AVAsset *)asset completionHandler:(BCVideoBufferStatus)status {
+    self = [self init];
+    
+    if (self) {
+        player = [AVPlayer playerWithPlayerItem:[AVPlayerItem playerItemWithAsset:asset]];
+        videoOutput = [[AVPlayerItemVideoOutput alloc] initWithPixelBufferAttributes:pixelBufferDict];
+        [player.currentItem addOutput:videoOutput];
+        [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+        //[self start];
+        consumerStatus = status;
+    }
+    
+    // 添加播放完成的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(playerItemDidReachEnd)
+                                                 name:AVPlayerItemDidPlayToEndTimeNotification
+                                               object:player.currentItem];
+    //[player play];
+    return self;
+}
+
 /**
  *  视频播放完毕回调
  */
 - (void)playerItemDidReachEnd{
     consumerStatus(nil, YES, nil);
-    [player seekToTime:CMTimeMake(0, 1)];
-    [player play];
+    // 循环视频
+    //[player seekToTime:CMTimeMake(0, 1)];
+    //[player play];
 }
 
 /**
@@ -84,7 +106,7 @@
  */
 - (void)start {
     NSLog(@"start");
-    [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+    //[displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
     [player play];
 }
 

@@ -113,6 +113,22 @@
     return self;
 }
 
+- (void)start {
+    [videoBufferObject start];
+}
+
+- (void)pause {
+    [videoBufferObject pause];
+}
+
+- (void)resume {
+    [videoBufferObject resume];
+}
+
+- (void)stop {
+    [videoBufferObject stop];
+}
+
 /**
  *  添加滤镜
  *
@@ -192,8 +208,9 @@
     __weak BCVideoFilter *weakSelf = self;
     
     videoBufferObject = [[BCVideoBuffer alloc]
-                          initWithUrl:_videoInputUrl
-                          completionHandler:^(CVPixelBufferRef buffer, BOOL isFinish, NSError *error)
+                         initWithAsset:videoAsset
+                          //initWithUrl:_videoInputUrl
+                        completionHandler:^(CVPixelBufferRef buffer, BOOL isFinish, NSError *error)
     {
         
         if(isFinish == NO)

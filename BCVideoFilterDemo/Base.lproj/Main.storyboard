@@ -1,9 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2hO-Iu-NMO">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2hO-Iu-NMO">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--视频录入-->
@@ -15,67 +19,57 @@
                         <viewControllerLayoutGuide type="bottom" id="Nd2-B8-fxw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="acK-WI-Su8">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOv-Yv-5ra">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <rect key="frame" x="0.0" y="539" width="375" height="128"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nyi-lM-d36" userLabel="Button View">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="800" height="128"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sqK-iv-Ye9">
-                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sqK-iv-Ye9">
+                                                <rect key="frame" x="17" y="24" width="80" height="80"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="原图"/>
-                                                <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="17" y="24" width="80" height="80"/>
-                                                </variation>
                                                 <connections>
                                                     <action selector="normalButtonAction:" destination="2hO-Iu-NMO" eventType="touchUpInside" id="2fg-jA-QNB"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vuK-tq-Ctx">
-                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vuK-tq-Ctx">
+                                                <rect key="frame" x="105" y="24" width="80" height="80"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="棕色滤镜"/>
-                                                <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="105" y="24" width="80" height="80"/>
-                                                </variation>
                                                 <connections>
                                                     <action selector="sepiaToneButtonAction:" destination="2hO-Iu-NMO" eventType="touchUpInside" id="3fz-2V-Ou0"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Txz-5s-dj5">
-                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Txz-5s-dj5">
+                                                <rect key="frame" x="193" y="24" width="80" height="80"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="模糊滤镜"/>
-                                                <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="193" y="24" width="80" height="80"/>
-                                                </variation>
                                                 <connections>
                                                     <action selector="gaussianBlurButtonAction:" destination="2hO-Iu-NMO" eventType="touchUpInside" id="obS-EL-T5u"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cn2-Ee-Mfs">
-                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cn2-Ee-Mfs">
+                                                <rect key="frame" x="281" y="24" width="80" height="80"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="像素滤镜"/>
-                                                <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="281" y="24" width="80" height="80"/>
-                                                </variation>
                                                 <connections>
                                                     <action selector="pixellateButtonAction:" destination="2hO-Iu-NMO" eventType="touchUpInside" id="bRR-Pg-zrI"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oq9-mM-QfD">
-                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oq9-mM-QfD">
+                                                <rect key="frame" x="369" y="24" width="80" height="80"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="反色滤镜"/>
-                                                <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="369" y="24" width="80" height="80"/>
-                                                </variation>
                                                 <connections>
                                                     <action selector="colorInvertButtonAction:" destination="2hO-Iu-NMO" eventType="touchUpInside" id="468-7g-YhU"/>
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="400" id="Pu9-xr-6Le">
                                                 <variation key="widthClass=compact" constant="800"/>
@@ -143,16 +137,16 @@
                                 </variation>
                             </scrollView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tf-oc-pcB" userLabel="Time View">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <rect key="frame" x="284" y="35" width="76" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JPG-Dd-0HR">
-                                        <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="76" height="30"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.1220140707" green="0.1220140707" blue="0.1220140707" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.1220140707" green="0.1220140707" blue="0.1220140707" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="JPG-Dd-0HR" secondAttribute="bottom" constant="4" id="8dU-w0-kU9">
                                         <variation key="widthClass=compact" constant="0.0"/>
@@ -197,11 +191,67 @@
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="osH-46-lih">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" red="1" green="0.59461448930000005" blue="0.71254758929999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="519"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nhM-fG-oXc">
+                                        <rect key="frame" x="36" y="476" width="31" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="9Uv-dE-6m9"/>
+                                            <constraint firstAttribute="width" constant="31" id="HGM-Al-1PF"/>
+                                        </constraints>
+                                        <state key="normal" title="开始"/>
+                                        <connections>
+                                            <action selector="start:" destination="2hO-Iu-NMO" eventType="touchUpInside" id="SDr-m3-0yW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hOu-oP-RaQ">
+                                        <rect key="frame" x="103" y="476" width="31" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="0oC-a5-NeI"/>
+                                            <constraint firstAttribute="width" constant="31" id="kfC-6Y-gwK"/>
+                                        </constraints>
+                                        <state key="normal" title="暂停"/>
+                                        <connections>
+                                            <action selector="pause:" destination="2hO-Iu-NMO" eventType="touchUpInside" id="Ecb-lP-SdK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TF2-Hc-KFJ">
+                                        <rect key="frame" x="164" y="476" width="31" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Pg3-eq-3Uw"/>
+                                            <constraint firstAttribute="width" constant="31" id="afy-JE-SFB"/>
+                                        </constraints>
+                                        <state key="normal" title="继续"/>
+                                        <connections>
+                                            <action selector="resume:" destination="2hO-Iu-NMO" eventType="touchUpInside" id="hsY-jC-XFO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nwo-IL-tPM">
+                                        <rect key="frame" x="240" y="476" width="31" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="31" id="dhw-d4-UhO"/>
+                                            <constraint firstAttribute="height" constant="30" id="qAr-zF-3UX"/>
+                                        </constraints>
+                                        <state key="normal" title="停止"/>
+                                        <connections>
+                                            <action selector="stop:" destination="2hO-Iu-NMO" eventType="touchUpInside" id="VT6-3W-bGl"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.59461448930000005" blue="0.71254758929999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="hOu-oP-RaQ" firstAttribute="leading" secondItem="nhM-fG-oXc" secondAttribute="trailing" constant="36" id="4eI-l5-jiu"/>
+                                    <constraint firstItem="Nwo-IL-tPM" firstAttribute="leading" secondItem="TF2-Hc-KFJ" secondAttribute="trailing" constant="45" id="BmI-Zh-rn3"/>
+                                    <constraint firstItem="TF2-Hc-KFJ" firstAttribute="leading" secondItem="hOu-oP-RaQ" secondAttribute="trailing" constant="30" id="GLD-AV-UmG"/>
+                                    <constraint firstAttribute="bottom" secondItem="nhM-fG-oXc" secondAttribute="bottom" constant="13" id="Xni-Ng-GHr"/>
+                                    <constraint firstItem="Nwo-IL-tPM" firstAttribute="bottom" secondItem="nhM-fG-oXc" secondAttribute="bottom" id="Z1V-jy-PiN"/>
+                                    <constraint firstItem="TF2-Hc-KFJ" firstAttribute="bottom" secondItem="nhM-fG-oXc" secondAttribute="bottom" id="gkR-20-25w"/>
+                                    <constraint firstItem="hOu-oP-RaQ" firstAttribute="bottom" secondItem="nhM-fG-oXc" secondAttribute="bottom" id="q7I-MJ-R1q"/>
+                                    <constraint firstItem="nhM-fG-oXc" firstAttribute="leading" secondItem="osH-46-lih" secondAttribute="leading" constant="36" id="z3u-Za-7Ax"/>
+                                </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="nOv-Yv-5ra" firstAttribute="top" secondItem="osH-46-lih" secondAttribute="bottom" id="7xV-1E-ngh"/>
                             <constraint firstAttribute="trailing" secondItem="osH-46-lih" secondAttribute="trailing" id="SrC-Vr-FcX"/>
