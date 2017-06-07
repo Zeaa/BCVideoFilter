@@ -33,7 +33,6 @@
     
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"test" withExtension:@"mp4"];
     
-    // 初始化，传入边框，视频地址
     //_videoFilter = [[BCVideoFilter alloc] initWithFrame:self.displayView.bounds videoInputUrl:url];
     _videoFilter = [[BCVideoFilter alloc] initWithFrame:CGRectMake(0, 20, 320, 180) videoInputUrl:url];
     // 设置显示层
@@ -41,6 +40,7 @@
     // 设置滤镜
     BCFilter *filter = [[BCFilter alloc] init];
     [_videoFilter addFilter:filter];
+    
     // 开始滤镜过滤
     [_videoFilter processVideoWithBlockCompletionHandler:^(float progress, BOOL isFinish, NSError *error) {
         if (isFinish) {

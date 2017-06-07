@@ -8,6 +8,7 @@
 
 #import "BCFilter.h"
 
+/// 像素滤镜
 @interface BCPixellateFilter : BCFilter
 
 @end

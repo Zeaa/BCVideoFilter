@@ -6,10 +6,9 @@
 //  Copyright © 2016 陈明标. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 #import "BCFilter.h"
 
+/// 棕色滤镜
 @interface BCSepiaToneFilter : BCFilter
 
 @end

@@ -7,19 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 
-@class AVAsset;
-@interface BCVideoBuffer : NSObject
-
+/**
+ *  视频处理中的代码块回调
+ *
+ *  @param buffer   帧像素
+ *  @param isFinish 是否处理完成
+ *  @param error    处理出错
+ */
 typedef void(^BCVideoBufferStatus)(CVPixelBufferRef buffer, BOOL isFinish, NSError *error);
+
+
+@interface BCVideoBuffer : NSObject
 
 /**
  *  初始化视频
  *
  *  @param url          视频URL
- *  @param status       回调
- *
- *  @return self
+ *  @param status       视频处理中回调
  */
 - (instancetype)initWithUrl:(NSURL *)url
           completionHandler:(BCVideoBufferStatus)status;
@@ -29,9 +35,7 @@ typedef void(^BCVideoBufferStatus)(CVPixelBufferRef buffer, BOOL isFinish, NSErr
  *  初始化视频
  *
  *  @param asset        视频Asset
- *  @param status       回调
- *
- *  @return self
+ *  @param status       视频处理中回调
  */
 - (instancetype)initWithAsset:(AVAsset *)asset
             completionHandler:(BCVideoBufferStatus)status;

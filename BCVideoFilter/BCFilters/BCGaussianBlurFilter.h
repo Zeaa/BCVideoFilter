@@ -8,6 +8,7 @@
 
 #import "BCFilter.h"
 
+/// 高斯模糊滤镜
 @interface BCGaussianBlurFilter : BCFilter
 
 @end

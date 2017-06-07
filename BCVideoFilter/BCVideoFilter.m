@@ -7,11 +7,9 @@
 //
 
 #import "BCVideoFilter.h"
-#import "BCFilter.h"
 #import "BCVideoBuffer.h"
 
 #import <ImageIO/ImageIO.h>
-#import <AVFoundation/AVFoundation.h>
 #import <QuartzCore/CoreAnimation.h>
 
 @interface BCVideoFilter()
@@ -19,75 +17,28 @@
     BCVideoBuffer *videoBufferObject;
 }
 
-
-
-// 视频输入地址
-@property (nonatomic, strong) NSURL *videoInputUrl;
-// 水印输入地址
-@property (nonatomic, strong) NSURL *watermarkInputUrl;
-// 滤镜
-@property (nonatomic, strong) BCFilter *filter;
-// 视频帧数
-@property (nonatomic, assign) int frameCount;
-// 视频帧索引
-@property (nonatomic, assign) int frameIndex;
+@property (nonatomic, strong) BCFilter *filter;             // 滤镜
+@property (nonatomic, strong) NSURL *videoInputUrl;         // 视频输入地址
+@property (nonatomic, assign) int frameIndex;               // 视频帧索引
+//@property (nonatomic, assign) int frameCount;             // 视频帧数
+//@property (nonatomic, strong) NSURL *watermarkInputUrl;   // 水印输入地址
 
 @end
 
 @implementation BCVideoFilter
 
-/**
- *  初始化
- *
- *  @param frame          框架
- *  @param videoInputPath 视频输入地址
- */
+
+// 初始化
 - (instancetype)initWithFrame:(CGRect)frame
                 videoInputUrl:(NSURL *)videoInputUrl
 {
-    return [self initWithFrame:frame videoInputUrl:videoInputUrl filter:nil watermarkInputUrl:nil];
+    return [self initWithFrame:frame videoInputUrl:videoInputUrl filter:nil];
 }
 
-/**
- *  初始化
- *
- *  @param frame          框架
- *  @param videoInputPath 视频输入地址
- *  @param filter         滤镜
- */
+// 初始化
 - (instancetype)initWithFrame:(CGRect)frame
                 videoInputUrl:(NSURL *)videoInputUrl
                        filter:(BCFilter *)filter
-{
-   return [self initWithFrame:frame videoInputUrl:videoInputUrl filter:filter watermarkInputUrl:nil];
-}
-
-/**
- *  初始化
- *
- *  @param frame              框架
- *  @param videoInputPath     视频输入地址
- *  @param watermarkInputPath 水印输入地址
- */
-- (instancetype)initWithFrame:(CGRect)frame
-                videoInputUrl:(NSURL *)videoInputUrl
-            watermarkInputUrl:(NSURL *)watermarkInputUrl
-{
-    return [self initWithFrame:frame videoInputUrl:videoInputUrl filter:nil watermarkInputUrl:watermarkInputUrl];
-}
-
-/**
- *  初始化
- *
- *  @param frame              框架
- *  @param videoInputPath     视频输入地址
- *  @param filter             滤镜
- *  @param watermarkInputPath 水印输入地址
- */
-- (instancetype)initWithFrame:(CGRect)frame
-                videoInputUrl:(NSURL *)videoInputUrl
-                       filter:(BCFilter *)filter
-            watermarkInputUrl:(NSURL *)watermarkInputUrl
 {
     self = [super init];
     if (self) {
@@ -107,11 +58,12 @@
         // 初始化参数
         _frameIndex = 0;
         _videoInputUrl = videoInputUrl;
-        _watermarkInputUrl = watermarkInputUrl;
         _view = [[BCGLKView alloc] initWithFrame:frame];
     }
     return self;
 }
+
+#pragma mark - 视频控制
 
 - (void)start {
     [videoBufferObject start];
@@ -129,61 +81,20 @@
     [videoBufferObject stop];
 }
 
-/**
- *  添加滤镜
- *
- *  @param filter 滤镜
- */
+//  添加滤镜
 - (void)addFilter:(BCFilter *)filter
 {
-    [self addFilter:filter parameter:nil];
-}
-
-/**
- *  添加滤镜
- *
- *  @param filter     滤镜
- *  @param parameters 参数
- */
-- (void)addFilter:(BCFilter *)filter parameter:(NSArray *)parameters
-{
     self.filter = filter;
-    if ( parameters )
-    {
-        self.filter.parameters = parameters;
-    }
 }
 
-/**
- *  更换滤镜
- *
- *  @param filter 滤镜
- */
+// 更换滤镜
 - (void)changeFilter:(BCFilter *)filter
 {
-    [self changeFilter:filter parameter:nil];
-}
-
-/**
- *  更换滤镜
- *
- *  @param filter     滤镜
- *  @param parameters 参数
- */
-- (void)changeFilter:(BCFilter *)filter parameter:(NSArray *)parameters
-{
+    
     self.filter = filter;
-    if ( parameters )
-    {
-        self.filter.parameters = parameters;
-    }
 }
 
-/**
- *  设置滤镜
- *
- *  @param filter 滤镜
- */
+// filter set方法重写
 - (void)setFilter:(BCFilter *)filter
 {
     _filter = filter;
@@ -215,15 +126,12 @@
         
         if(isFinish == NO)
         {
-            
             _frameIndex++;
             
             // buffer转成ciImage
             CIImage *ciImage = [CIImage imageWithCVPixelBuffer:buffer];
-            
             // 添加滤镜
             ciImage = [weakSelf.filter getFilterHanldeImage:ciImage];
-            
             // 应用形变
             ciImage = [ciImage imageByApplyingTransform:orginialTransForm];
             
@@ -231,15 +139,59 @@
             weakSelf.view.image = ciImage;
             [weakSelf.view display];
             
-        }
-        else
-        {
+        }else {
             _frameIndex = 0;
         }
         
         status(_frameIndex, isFinish, nil);
         
     }];
+}
+
+#pragma mark - 应用视频滤镜
+
+// 将Core Image滤镜应用于视频媒体
+- (void)applyingCoreImageFiltersToAVideoAsset {
+    
+    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    AVVideoComposition *composition = [AVVideoComposition videoCompositionWithAsset: self.asset applyingCIFiltersWithHandler:^(AVAsynchronousCIImageFilteringRequest *request){
+        
+        // Clamp to avoid blurring transparent pixels at the image edges
+        // clamp to 避免在图像边缘模糊透明像素
+        CIImage *source = [request.sourceImage imageByClampingToExtent];
+        [filter setValue:source forKey:kCIInputImageKey];
+        
+        // Vary filter parameters based on video timing
+        // 基于视频时基的不同滤镜参数
+        Float64 seconds = CMTimeGetSeconds(request.compositionTime);
+        [filter setValue:@(seconds * 10.0) forKey:kCIInputRadiusKey];
+        
+        // Crop the blurred output to the bounds of the original image
+        // 将模糊输出裁剪到原始图像的边界
+        CIImage *output = [filter.outputImage imageByCroppingToRect:request.sourceImage.extent];
+        
+        // Provide the filter output to the composition
+        // 向composition提供滤镜输出
+        [request finishWithImage:output context:nil];
+    }];
+}
+
+#pragma mark - 导出视频
+
+// TODO: 导出视频时合成滤镜
+- (void)exportVideoWithVideoOuputPath:(NSString *)videooutputPath {
+    
+    // 应用视频滤镜
+    AVMutableVideoComposition *videoComposition = [AVMutableVideoComposition videoCompositionWithAsset:self.asset applyingCIFiltersWithHandler:^(AVAsynchronousCIImageFilteringRequest * _Nonnull request) {
+        
+        CIImage *source = request.sourceImage;
+        CIFilter *filter = [CIFilter filterWithName:self.currentFilter];
+        [filter setValue:source forKey:kCIInputBackgroundImageKey];
+        
+        // 处理image
+        [request finishWithImage:filter.outputImage context:nil];
+    }];
+    // 导出
 }
 
 @end

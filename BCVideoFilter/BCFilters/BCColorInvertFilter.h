@@ -8,6 +8,7 @@
 
 #import "BCFilter.h"
 
+/// 反转颜色滤镜
 @interface BCColorInvertFilter : BCFilter
 
 @end

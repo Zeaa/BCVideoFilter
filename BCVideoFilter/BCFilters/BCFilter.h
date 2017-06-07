@@ -10,12 +10,8 @@
 
 @interface BCFilter : NSObject
 
-// 当前滤镜说明
-@property (nonatomic, copy) NSString *currentFilter;
-
-// 滤镜参数
-@property (nonatomic, copy) NSArray *parameters;
-
+@property (nonatomic, copy) NSString *currentFilter;    // 当前滤镜
+//@property (nonatomic, copy) NSArray *parameters;      // 滤镜参数
 
 /**
  *  获取处理后的图片

@@ -8,7 +8,6 @@
 
 #import "BCVideoBuffer.h"
 
-#import <AVFoundation/AVFoundation.h>
 #import <GLKit/GLKit.h>
 #import <Accelerate/Accelerate.h>
 
@@ -26,8 +25,6 @@
 
 /**
  *  初始化
- *
- *  @return self
  */
 - (instancetype)init {
     self = [super init];
@@ -45,8 +42,6 @@
  *
  *  @param URL           视频URL
  *  @param callbackBlock 回调
- *
- *  @return self
  */
 - (instancetype)initWithUrl:(NSURL *)url
           completionHandler:(BCVideoBufferStatus)status
@@ -57,7 +52,8 @@
         player = [AVPlayer playerWithURL:url];
         videoOutput = [[AVPlayerItemVideoOutput alloc] initWithPixelBufferAttributes:pixelBufferDict];
         [player.currentItem addOutput:videoOutput];
-        [self start];
+        [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+        //[self start];
         consumerStatus = status;
     }
     
@@ -66,7 +62,7 @@
                                              selector:@selector(playerItemDidReachEnd)
                                                  name:AVPlayerItemDidPlayToEndTimeNotification
                                                object:player.currentItem];
-    [player play];
+    //[player play];
     return self;
 }
 
@@ -96,8 +92,8 @@
  */
 - (void)playerItemDidReachEnd{
     consumerStatus(nil, YES, nil);
-    // 循环视频
-    //[player seekToTime:CMTimeMake(0, 1)];
+    // 回到起始点
+    [player seekToTime:CMTimeMake(0, 1)];
     //[player play];
 }
 

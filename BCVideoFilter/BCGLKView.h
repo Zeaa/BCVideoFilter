@@ -12,7 +12,7 @@
 
 @property (strong, nonatomic) CIImage * image;
 
-@property GLfloat preferredRotation;
-@property CGSize presentationRect;
+//@property GLfloat preferredRotation;
+//@property CGSize presentationRect;
 
 @end
